@@ -96,9 +96,9 @@
                     <span>User</span>
                 </a>
             </li>
-            <hr class="sidebar-divider my-0">
         @endif
-
+            
+        <hr class="sidebar-divider my-0">
         <li class="nav-item {{ Request::segment(1) === 'pembelian' ? 'active' : null }}">
             <a class="nav-link" href="{{ route('pembelian.index') }}">
                 <i class="fas fa-clipboard-list"></i>
