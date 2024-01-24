@@ -13,7 +13,9 @@
 @endpush
 
 @section('content')
+@if (Auth::user()->role == 'admin')
 <a href="#" class="btn btn-primary mb-3 float-right" data-toggle="modal" data-target="#modal-tambah">Tambah</a>
+@endif
 <a href="{{ route('download') }}" class="btn btn-success mr-3 mb-3 float-right">Download</a>
 <div class="clearfix"></div>
 
@@ -31,7 +33,9 @@
                         <th>Harga</th>
                         <th>Diskon %</th>
                         <th>Subtotal</th>
+                        @if (Auth::user()->role == 'admin')
                         <th>Aksi</th>
+                        @endif
                     </tr>
                 </thead>
             </table>
@@ -166,22 +170,41 @@ $(document).ready(function() {
             { data: 'harga', name: 'harga' },
             { data: 'diskon', name: 'diskon' },
             { data: 'subtotal', name: 'subtotal' },
+            @if (Auth::user()->role == 'admin')
             { data: 'aksi', name: 'aksi', orderable: false, searchable: false },
+            @endif
         ],
-        columnDefs: [
-            { "className": "text-center", "targets": [0, 8] },
-            { "width": "5%", "targets": 0 },
-            { "width": "20%", "targets": 8 },
-        ],
-        dom: 'Bfrtip',
-        buttons: [
-            {
-                extend: 'pdf',
-                exportOptions: {
-                    columns: [0,1,2,3,4,5,6,7]
+        @if (Auth::user()->role == 'admin')
+            columnDefs: [
+                { "className": "text-center", "targets": [0, 8] },
+                { "width": "5%", "targets": 0 },
+                { "width": "20%", "targets": 8 },
+            ],
+            dom: 'Bfrtip',
+            buttons: [
+                {
+                    extend: 'pdf',
+                    exportOptions: {
+                        columns: [0,1,2,3,4,5,6,7]
+                    }
                 }
-            }
-        ]
+            ]
+        @else
+            columnDefs: [
+                { "className": "text-center", "targets": [0, 7] },
+                { "width": "5%", "targets": 0 },
+                { "width": "20%", "targets": 7 },
+            ],
+            dom: 'Bfrtip',
+            buttons: [
+                {
+                    extend: 'pdf',
+                    exportOptions: {
+                        columns: [0,1,2,3,4,5,6]
+                    }
+                }
+            ]
+        @endif
     });
 
     $('.select-barang').select2({ width: '100%' });

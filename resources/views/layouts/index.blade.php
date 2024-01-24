@@ -73,29 +73,32 @@
             <div class="sidebar-brand-text me-2">Persediaan Barang</div>
         </a>
 
-        <hr class="sidebar-divider my-0">
-        <li class="nav-item {{ Request::segment(1) === 'dashboard' ? 'active' : null }}">
-            <a class="nav-link" href="{{ route('dashboard') }}">
-                <i class="fas fa-clipboard-list"></i>
-                <span>Dashboard</span>
-            </a>
-        </li>
-        
-        <hr class="sidebar-divider my-0">
-        <li class="nav-item {{ Request::segment(1) === 'barang' ? 'active' : null }}">
-            <a class="nav-link" href="{{ route('barang.index') }}">
-                <i class="fas fa-clipboard-list"></i>
-                <span>Barang</span>
-            </a>
-        </li>
-        <hr class="sidebar-divider my-0">
-        <li class="nav-item {{ Request::segment(1) === 'user' ? 'active' : null }}">
-            <a class="nav-link" href="{{ route('user.index') }}">
-                <i class="fas fa-clipboard-list"></i>
-                <span>User</span>
-            </a>
-        </li>
-        <hr class="sidebar-divider my-0">
+        @if (Auth::user()->role == 'admin')
+            <hr class="sidebar-divider my-0">
+            <li class="nav-item {{ Request::segment(1) === 'dashboard' ? 'active' : null }}">
+                <a class="nav-link" href="{{ route('dashboard') }}">
+                    <i class="fas fa-clipboard-list"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            
+            <hr class="sidebar-divider my-0">
+            <li class="nav-item {{ Request::segment(1) === 'barang' ? 'active' : null }}">
+                <a class="nav-link" href="{{ route('barang.index') }}">
+                    <i class="fas fa-clipboard-list"></i>
+                    <span>Barang</span>
+                </a>
+            </li>
+            <hr class="sidebar-divider my-0">
+            <li class="nav-item {{ Request::segment(1) === 'user' ? 'active' : null }}">
+                <a class="nav-link" href="{{ route('user.index') }}">
+                    <i class="fas fa-clipboard-list"></i>
+                    <span>User</span>
+                </a>
+            </li>
+            <hr class="sidebar-divider my-0">
+        @endif
+
         <li class="nav-item {{ Request::segment(1) === 'pembelian' ? 'active' : null }}">
             <a class="nav-link" href="{{ route('pembelian.index') }}">
                 <i class="fas fa-clipboard-list"></i>
