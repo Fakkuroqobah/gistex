@@ -73,15 +73,15 @@
             <div class="sidebar-brand-text me-2">Persediaan Barang</div>
         </a>
 
-        @if (Auth::user()->role == 'admin')
-            <hr class="sidebar-divider my-0">
-            <li class="nav-item {{ Request::segment(1) === 'dashboard' ? 'active' : null }}">
-                <a class="nav-link" href="{{ route('dashboard') }}">
-                    <i class="fas fa-clipboard-list"></i>
-                    <span>Dashboard</span>
-                </a>
-            </li>
-            
+        <hr class="sidebar-divider my-0">
+        <li class="nav-item {{ Request::segment(1) === 'dashboard' ? 'active' : null }}">
+            <a class="nav-link" href="{{ route('dashboard') }}">
+                <i class="fas fa-clipboard-list"></i>
+                <span>Dashboard</span>
+            </a>
+        </li>
+
+        @if (Auth::user()->role == 'admin')    
             <hr class="sidebar-divider my-0">
             <li class="nav-item {{ Request::segment(1) === 'barang' ? 'active' : null }}">
                 <a class="nav-link" href="{{ route('barang.index') }}">
